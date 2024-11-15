@@ -4,7 +4,7 @@
 }
 body{
     font-family: 'Roboto', sans-serif;
-    background-image: url("https://img.freepik.com/premium-photo/foods-background-light-color-table_168501-2962.jpg");
+    background-image: url("https://i.pinimg.com/736x/69/2e/5b/692e5bb291fba1dd3df725c1f3afe469.jpg");
     background-size:cover;
     background-repeat: no-repeat;
 }
@@ -18,6 +18,8 @@ body{
     display: flex;
     justify-content: center;
     margin-top: 14px;
+    padding:14px;
+
 } 
 .searchBar input{
     width: 300px;

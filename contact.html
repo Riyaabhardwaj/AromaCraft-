@@ -5,59 +5,313 @@
     <meta name="viewport" content="width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      body{
-            background-image:url("https://wallpapercave.com/wp/wp10455999.jpg");
-            background-size:cover;
-            background-repeat: no-repeat;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) !important;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.8);
+}
+
+section {
+  position: relative;
+  z-index: 3;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.container {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.section-header {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.section-header h2 {
+  color: #FFF;
+  font-weight: bold;
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.section-header p {
+  color: #FFF;
+}
+
+.row  {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-info {
+  width: 50%;
+}
+
+.contact-info-item {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.contact-info-icon1 {
+    width: 50px;
+    height: 50px;
+    border-radius: 300px;
+    background: url("https://www.cellulare-magazine.it/wp-content/uploads/2017/02/instagram-jpg.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  
+}
+.contact-info-icon2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 300px;
+    background: url("https://static.vecteezy.com/system/resources/previews/002/261/151/original/phone-icon-symbol-sign-isolate-on-white-background-illustration-free-vector.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+      background-size: cover;
+}
+.contact-info-icon3{
+    width: 50px;
+    height: 50px;
+    border-radius: 300px;
+    background: url("http://clipartmag.com/images/transparent-email-icon-15.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.contact-info-icon i {
+  font-size: 30px;
+  line-height: 70px;
+}
+
+.contact-info-content {
+  margin-left: 20px;
+  
+    
+  
+}
+
+
+.contact-info-content h4 {
+  color: #1da9c0;
+  font-size: 1.4em;
+  margin-bottom: 5px;
+}
+
+.contact-info-content p {
+  color: #FFF;
+  font-size: 1em;
+}
+
+.contact-form {
+  background-color: #fff;
+  padding: 40px;
+  width: 45%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.contact-form h2 {
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.contact-form .input-box {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.contact-form .input-box input,
+.contact-form .input-box textarea{
+  width: 100%;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid #333;
+  outline: none;
+  resize: none;
+}
+
+.contact-form .input-box span {
+  position: absolute;
+  left: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.5s;
+  color: #666;
+}
+
+.contact-form .input-box input:focus ~ span,
+.contact-form .input-box textarea:focus ~ span{
+  color: #e91e63;
+  font-size: 12px;
+  transform: translateY(-20px);
+}
+
+.contact-form .input-box input[type="submit"]
+{
+  width: 100%;
+  background: #00bcd4;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #00bcd4;
+  transition: 0.5s;
+}
+
+.contact-form .input-box input[type="submit"]:hover
+{
+  background: #FFF;
+  color: #00bcd4;
+}
+
+ 
+  
+ 
+    
+
+
+
+@media (max-width: 991px) {
+  section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .row {
+    flex-direction: column;
+  }
+  
+  .contact-info {
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  
+  .contact-form {
+    width: 100%;
+  }
+  
+}
+</style>
+
+    <section>
+    
+    <div class="section-header">
+      <div class="container">
+        <h2>Contact Us</h2>
+        
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon1">
+              <i class="fas fa-home"></i>
+            </div>
             
+            <div class="contact-info-content">
+              <h4>Intagram </h4>
+              <p>aromacraft_234@gmail.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <div class="contact-info-icon2">
+              <i class="fas fa-phone"></i>
+            </div>
             
+            <div class="contact-info-content">
+              
+              
+              
+            
+              <h4>Phone</h4>
+              <p>571-457-2321</p>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <div class="contact-info-icon3">
+              <i class="fas fa-envelope"></i>
+            </div>
+            
+            <div class="contact-info-content">
+              <h4>Email</h4>
+             <p>ntamerrwael@mfano.ga</p>
+            </div>
+          </div>
+        </div>
         
-
-        }
-           
-         .header{
-text-align: center;
-align-content:center ;
-justify-content: center;
-padding-top: 55px;
-color: antiquewhite;
-font-size: 26px;
-         }   
-
-
-
-
+        <div class="contact-form">
+          <form action="" id="contact-form">
+            <h2>Send Message</h2>
+            <div class="input-box">
+              <input type="text" required="true" name="">
+              <span>Full Name</span>
+            </div>
+            
+            <div class="input-box">
+              <input type="email" required="true" name="">
+              <span>Email</span>
+            </div>
+            
+            <div class="input-box">
+              <textarea required="true" name=""></textarea>
+              <span>Type your Message...</span>
+            </div>
+            
+            <div class="input-box">
+              <input type="submit" value="Send" name="">
+            </div>
+          </form>
+        </div>
         
-        h1{
-            font-weight: 400;
-            font-size: 98px;
-
-        }
-        .back-btn{
-        background-color: black;
-        color: aliceblue;
-        border-radius: 4px;
-        
-       }
-       a{
-        color: aliceblue;
-        text-decoration: none;
-
-       }
-    </style>
-</head>
-<body>
-    <button class="back-btn"><a href="index.html">home</a></button>
-    <div class="header">
-   
-<h2>CONTACT US</h2>
-<P class="para">
-   <h4> Phone:XXXXXXXXXXX</h4>
-<h3>intagram acc:aroma_craft015</h3>
-<h3>facebook acc:aroma_craft@015</h3>
-<h3>Email:aroma_craft015@gmail.com</h3>
-
-</P>
-</div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>

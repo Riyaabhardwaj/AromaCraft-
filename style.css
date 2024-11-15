@@ -1,125 +1,148 @@
 * {
-    box-sizing: border-box;
-   
-  }
- 
-    body{
-      background-image:url("https://img.freepik.com/premium-photo/food-cooking-background-stone-texture-with-sea-salt-pepper-garlic-parsley-light-grey-abstract-food-background-empty-space-text-can-be-used-food-posters-design-menu-top-view_253362-16400.jpg?w=2000");
-      background-size:cover;
-      background-repeat: no-repeat;
-  }
-  
-  nav {
-    display: flex;
-    justify-content:left;
-    align-items: left;
-    margin: 20px;
-  }
-  
-  
-  .info{
-     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  
-  
-  ul li {
-    display: inline;
-    margin-left: 40px;
-    font-family: sans-serif;
-    color: black;
-    font-size: 18px;
-  }
-  
-  main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .container {
-    width: 60%;
-    padding: 3rem;
-    
-    margin-top: 5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   
-  }
-  
-  .content-container h1 {
-    font-family: sans-serif;
-    font-size:43px;
-    color:black;
-    
-  }
-  
-  .content-container p {
-    font-family: sans-serif;
-    line-height: 1.4;
-    margin-bottom: 2rem;
-    color:black;
-    width: 26rem;
-    font-size:21px ;
-  }
-  
-  .img {
-    transform: translateX(-120px);
-    margin-top: 1rem;
-    width: 350px;
-    height: 350px;
-    border-radius: 300px;
-    background: url("https://i.pinimg.com/736x/c0/d7/11/c0d7110e4d059b190a0c1c027ab17fe9.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-  .back-btn{
-    background-color:black;
-    color:white;
-    border:2px;
-    padding:11px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    border-radius: 6px;
-    border-radius: 5px;
+	margin: 0; 
+	padding: 0; 
+}
 
-
-   }
-  .ingredients {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 5rem;
-    padding: 50px;
-  }
+.para{
+  color:black;
+  font-size:19px;
+  padding:5px;
+  margin:8px;
   
-  .ingredients span {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-  }
-  a{
-    color: aliceblue;
-    text-decoration: none;
-
-   }
-  .ing {
-    padding: 10px 20px;
-    border: 2px solid #ff6e00;
-    color: #ff6e00;
-    font-family: sans-serif;
-    border-radius: 100px;
-  }
+}
+.h3{
+  color:black;
+  padding:3px;
+}
+body {
+	font-family: 'Lato', sans-serif;
+	background-image: url("https://i.pinimg.com/736x/33/ef/8b/33ef8b9c0b902154a6cd4103a21275ef.jpg");
+	background-size: cover;
+	
+}
+body::before{
+	filter:blur(2px);
+}
+.wrapper {
+	width: 1170px;
+	margin: auto;
+}
+header {
   
-  .main-btn {
-    background-color: black;
-    padding-top: 199px;
-    border: none;
-    border-radius:4px;
-    border: 2px solid black;
-    padding: 10px;
-    color:white;
-    margin-top:100px;
-    padding:10px;
-    margin-inline-start:14px;
-  }
+  
+	height: 100vh;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+}
+.nav-area {
+	text-align: center;
+	justify-content: center;
+	align-content: center;
+	list-style: none;
+	margin-top: 30px;
+}
+.nav-area li {
+	display: inline-block;
+}
+.nav-area li a {
+	color: black;
+	text-decoration: none;
+	padding: 5px 20px;
+	font-family: poppins;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+.nav-area li a:hover {
+	background:grey;
+	color: #333;
+}
+.logo {
+	float: left;
+}
+.video-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+video {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100vh;
+  max-width: none;
+}
+.logo img {
+	width: 100%;
+	padding: 15px 0;
+}
+.h1{
+  font-size:55px;
+}
+.welcome-text {
+	position: absolute;
+	width: 600px;
+	height:150px;
+	margin: 20% 30%;
+	text-align: center;
+  margin-top: 250px;
+}
+.welcome-text h1 {
+	text-align: center;
+	color: black;
+	text-transform: uppercase;
+	font-size: 60px;
+}
+.welcome-text a {
+	border: 1px solid black;
+	padding: 10px 25px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	margin-top: 20px;
+	display: inline-block;
+	color: #333;
+}
+.welcome-text a:hover {
+	background: grey;
+	color: #333;
+}
+/*resposive*/
+
+@media (max-width:600px) {
+	.wrapper {
+		width: 100%;
+	}
+	.logo {
+		float: none;
+		width: 50%;
+		text-align: center;
+		margin: auto;
+	}
+	
+	
+	.nav-area {
+		float: none;
+		margin-top: 0;
+	}
+	.nav-area li a {
+		padding: 5px;
+		font-size: 11px;
+	}
+	.nav-area {
+		text-align: center;
+	}
+	.welcome-text {
+		width: 100%;
+		height: auto;
+		margin: 30% 0;
+	}
+	.welcome-text h1 {
+		font-size: 30px;
+	}
+}
