@@ -11,7 +11,7 @@ let count = 0;
  console.log(dishs);
 const getData = async (value) =>{
    try{
-    let data = await fetch(https://www.themealdb.com/api/json/v1/1/search.php?s=${value});
+    let data = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`);
     let jsonData = await data.json()
  
     document.querySelector(".showMeal").innerHTML=""
@@ -57,13 +57,13 @@ dishs.forEach(function(name){
 
 // slider
 dishName.forEach(function(dish, index){
-    dish.style.left=${index * 100}%;
+    dish.style.left=`${index * 100}%`;
 });
 
 function myFun(){
 
     dishName.forEach(function(curVal){
-        curVal.style.transform=translateX(-${count * 100}%)
+        curVal.style.transform=`translateX(-${count * 100}%)`
     })
 } 
  
@@ -83,4 +83,5 @@ prevBtn.addEventListener("click", function(){
         count= dishName.length-1;
     }
     myFun();
+     
 })

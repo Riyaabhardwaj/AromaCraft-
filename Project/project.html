@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="project.css">
 </head>
 <body>
-
+<section>
     <header>
         <h1>AromaCraft & Foodoscope Dashboard</h1>
     </header>
@@ -15,28 +15,25 @@
     <main>
         <section id="dashboard">
             <button onclick="fetchFoodoscopeData()">Fetch Data</button>
-            <div id="data-output"></div>
+            <center> <div id="data-output"></div></center>
+           
         </section>
     </main>
     
-    <footer>
-        <p>Powered by AromaCraft</p>
-    </footer>
+   
 
     <!-- No.1 -->
     <!-- Aroma Profile Section -->
 <section id="aroma-profile">
     <h2>Aroma Profile Analysis</h2>
     <input type="text" id="ingredient-input" placeholder="Enter Ingredient (e.g., basil)">
+    
     <button onclick="analyzeAroma()">Analyze Aroma</button>
     <div id="aroma-output"></div>
 </section>
 
 <!-- No. 2 -->
-<section id="flavor-complexity">
-    <h2>Flavor Complexity Ratings</h2>
-    <div id="complexity-rating"></div>
-</section>
+
 
 
 <!-- No. 3 -->
@@ -61,7 +58,7 @@
     <option value="energizing">Energizing</option>
 </select>
 <button onclick="getMoodBasedSuggestions()">Find Ingredients</button>
-
+</section>
 
 
     <script src="project.js"></script>

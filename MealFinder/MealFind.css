@@ -4,11 +4,15 @@
 }
 body{
     font-family: 'Roboto', sans-serif;
+    background-image: url("https://img.freepik.com/premium-photo/foods-background-light-color-table_168501-2962.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 .logo{
     text-align: center;
     margin-top: 11px;
-    font-size: 23px;
+    font-size: 43px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .searchBar{
     display: flex;
