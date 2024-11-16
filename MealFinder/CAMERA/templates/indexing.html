@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object Detection</title>
+    <style>
+      body {
+            
+               /* Center vertically */
+            height: 100vh;          /* Full viewport height */
+            margin: 0;              /* Remove default margin */
+            background-image: url("https://images.pexels.com/photos/349610/pexels-photo-349610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #video-container {
+            
+            position: relative;      /* Needed for inner absolute elements, if any */
+            width: 400px;            /* Adjust width */
+            height: 400px;           /* Adjust height */
+            border: 2px solid black; /* Optional border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+             /* Background for contrast */
+            background-image: url('{{ url_for("static", filename="logo.jpg") }}');
+            background-size:cover;
+            background-position:center;
+            background-repeat: no-repeat;
+            margin-left: 570px;
+            justify-content: center;
+            margin-top:55px;
+           
+        }
+
+        #video-feed {
+            width: 100%; /* Match the container width */
+            height: 100%; /* Match the container height */
+        }
+
+        #detected-objects {
+            position: absolute;      /* Place text inside container */
+            top: 10px;
+            left: 10px;
+            color: green;
+            font-size: 20px;
+            background-color: rgba(255, 255, 255, 0.7); /* Transparent background */
+            padding: 5px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }  
+        #restart-btn{
+            
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 700px;
+            
+
+
+            
+            
+            
+            
+
+
+        }
+        #restart-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        h1{
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Camera Search</h1>
+    <div id="video-container">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+    </div>
+    <div id="detected-objects"></div>
+    <button id="restart-btn" disabled>Restart Camera</button>
+    <script>
+        async function checkDetectionStatus() {
+            try {
+                const response = await fetch("/detection_status");
+                const data = await response.json();
+                
+
+                if (data.detected) {
+                    // Stop the video feed
+                    document.getElementById("video-feed").style.display = "none";
+
+                    // Display the detected objects
+                    const staticImage = document.getElementById("detected-objects");
+                    staticImage.style.display = "block";
+                    const detectedObjects = document.getElementById("detected-objects");
+                    detectedObjects.style.display = "block";
+                    detectedObjects.textContent = "Detected: " + data.objects.join(", ");
+                    
+                    //Enable the restart button
+                    document.getElementById("restart-btn").disabled = false;
+
+                
+                } else {
+                    // Check again after a short delay if no object detected
+                    setTimeout(checkDetectionStatus, 500);
+                    
+                }
+            } catch (error) {
+                console.error("Error checking detection status:", error);
+            }
+        }
+        async function restartCamera() {
+            try {
+                const response = await fetch("/restart_camera", { method: "POST" });
+                if (response.ok) {
+                    // Reset UI
+                    const videoFeed=document.getElementById("video-feed");
+                    videoFeed.style.display = "block";
+                    videoFeed.src = ""; // Clear the old feed
+                    videoFeed.src = "{{ url_for('video_feed') }}?t=" + new Date().getTime(); // Add timestamp to prevent caching
+
+
+                     // Hide static image and detected objects div
+                    const staticImage=document.getElementById("static-image");
+                    staticImage.style.display = "none";
+                    const detectedObjectsDiv = document.getElementById("detected-objects");
+                    detectedObjectsDiv.style.display = "none"; // Hide detected objects
+                    detectedObjectsDiv.textContent = ""; // Clear previous object names
+
+                    document.getElementById("restart-btn").disabled = true; // Disable button until detection happens
+
+                    // Restart detection
+                    checkDetectionStatus();
+                } else {
+                    console.error("Failed to restart camera");
+                }
+            } catch (error) {
+                console.error("Error restarting camera:", error);
+            }
+        }
+
+        // Attach event listener to the restart button
+        document.getElementById("restart-btn").addEventListener("click", restartCamera);
+
+
+        // Start checking for detected objects
+        checkDetectionStatus();
+    </script>
+</body>
+</html>
