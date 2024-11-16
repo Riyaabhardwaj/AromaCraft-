@@ -10,9 +10,11 @@ let  dishValue = document.querySelectorAll(".dishVal");
 
 let count = 0;
  
-const getData = async (value) =>{
+const getData = async (dishname) =>{
     try{
-        let datas = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`);
+        let datas = await fetch(`https://cosylab.iiitd.edu.in/recipe-search/search?name=${dishname}`);
+        
+        
         let jsonData = await datas.json()
     
         console.log(jsonData.meals);
@@ -38,14 +40,14 @@ const getData = async (value) =>{
 
 
 
-searchBtn.addEventListener("click", function(){
-    let searchValue = searchInput.value ;
-    if(searchValue == ""){
-        alert("First Serach Value")
-    }else{
-        getData(searchValue)
+searchBtn.addEventListener("click", function () {
+    let searchValue = searchInput.value.trim(); // Remove extra spaces
+    if (searchValue === "") {
+        alert("Please enter a dish name to search.");
+    } else {
+        getData(searchValue);
     }
-})
+});
 
 dishValue.forEach(function(dishData){
     dishData.addEventListener("click", function(){

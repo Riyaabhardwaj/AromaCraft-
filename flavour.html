@@ -1,75 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<>, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            background-image: url("https://i.pinimg.com/736x/b3/f0/63/b3f0630bb06920fb41c26f11620ab4c5.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        
-        }
-             .input-container {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    border: 1px solid black;
-    padding-left:10px;
-    width: 300px;
-    height: 50px;
-    border-radius: 50px;
-    margin-left: 600px;
-    position: relative;
-    transition: width 1.5s;
-    background-color: black;
-  }
-  .input {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aroma Ingredient Substitution</title>
   
-  margin: 10px 50px;
-  margin-left: 20px;
-  width: 100%;
-  color:white;
-  border: none;
-  background: transparent;
-  outline: none;
-  transition-delay: 0.5s;
-  font-size: 20px;
+ 
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  background-image:url("https://i.pinimg.com/736x/08/8e/56/088e56c0062d7882b9b80697fe17fb5f.jpg") ;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.magnifier {
-    position: absolute;
-    right: 15px;
-    width: 25px;
-    text-align: center;
-    margin: 0 auto;
-    cursor: pointer;
-    color: #ffa31a;
-  }
-.hello{
-    text-align: center;
-    align-content: center;
-}
-.back-btn{
-        background-color: black;
-        color: aliceblue;
-        
-       }
-       a{
-        color: aliceblue;
-        text-decoration: none;
 
-       }
-    </style>
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 60%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: green;
+}
+
+button:hover {
+  background-color: grey;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+#substitution-results {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+</style>
 </head>
 <body>
-   
+  <div class="container">
+    <h1>Aroma Enhancement Ingredient Substitution</h1>
 
-    <div class="hello">
-        <h2>Know Your Ingredients</h2>
-        <form class="input-container">
-            <input type="text" class="input" placeholder="search by ingredients" />
-           
+    <div class="input-container">
+      <input 
+        type="text" 
+        id="ingredient-input" 
+        placeholder="Enter an ingredient" 
+        oninput="clearResults()" 
+      />
+      <button onclick="fetchSubstitutions()">Get Substitutions</button>
+    </div>
+
+    <p id="error-message" class="error-message"></p>
+
+    <div id="substitution-results">
+      <h2>Substitution Suggestions:</h2>
+      <ul id="substitution-list"></ul>
+    </div>
+  </div>
+
+  <script>
+    // script.js
+
+// Mock data for substitutions
+const ingredientDatabase = {
+  rosemary: {
+    aroma: "Herbal, piney, woody",
+    taste: "Pungent, savory",
+    substitutions: [
+      { name: "Thyme", aroma: "Earthy, minty, herbal", taste: "Savory, slightly minty" },
+      { name: "Lavender", aroma: "Floral, fresh, calming", taste: "Floral, slightly sweet" },
+    ]
+  },
+ 
+
+  basil: {
+    aroma: "Sweet, herbal, slightly spicy",
+    taste: "Sweet, peppery",
+    substitutions: [
+      { name: "Oregano", aroma: "Earthy, warm", taste: "Peppery, slightly bitter" },
+      { name: "Mint", aroma: "Fresh, cooling, sweet", taste: "Sweet, slightly spicy" },
+    ]
+  },
+  thyme: {
+    aroma: "Earthy, minty, herbal",
+    taste: "Savory, minty",
+    substitutions: [
+      { name: "Oregano", aroma: "Warm, earthy", taste: "Bitter, spicy" },
+      { name: "Sage", aroma: "Earthy, warm, slightly peppery", taste: "Savory" },
+    ]
+  },
+  
+
+  // Add more ingredients and substitutions as needed
+
+salt:{
+    aroma: "Neutral",
+    taste: "salty",
+    substitutions:[
+        {name:"Soy sauce",aroma:"salty",taste:"umami"}
+    ]
+
+},
+brownsugar:{
+    aroma:"Molasses-like,rich",
+    taste: "sweet,slightly nutty",
+    substitutions:[
+        {name:"white sugar with molasses",aroma:"similar sweetness",taste:"richness"}
+    ]
+
+
+},
+bayleaf:{
+    aroma:"Herbal, slightly floral, and woody",
+    taste:"Mildly bitter, earthy",
+    substitutions:[
+        {name:"Thyme or dried basil",aroma:"Earthy",taste:"slightly floral"}
+    ]
+},
+tomatoes:{
+    aroma:"	Fresh, acidic, slightly sweet",
+    taste:"Sweet, tangy, umami",
+    substitutions:[
+        {name:"Sun-dried tomatoes or tomato paste",aroma:"Concentrated tangy",taste:"umami"}
+    ]
+},
+vanillabean:{
+    aroma:"Intense, floral, sweet",
+    taste:"Sweet, creamy",
+    substitutions:[
+       {name:"Vanilla essence or cardamom",aroma:"Synthetic sweet (essence)",taste:"citrusy, floral (cardamom)"}
+    ]
+},
+chillipepper:{
+    aroma:"Spicy, slightly smoky",
+    taste:"Hot, pungent",
+    substitutions:[
+        {name:"Red pepper flakes or paprika",aroma:"Milder spicy (flakes)",taste:"smoky, sweet (paprika)"}
+    ]
+},
+honey:{
+    aroma:"	Floral, slightly caramelized",
+    taste:"Sweet, light floral",
+    substitutions:[
+        {name:"Maple syrup or agave syrup",aroma:"Earthy, rich (maple)",taste:"neutral, mild (agave)"}
+    ]
+},
+lemonzest:{
+    aroma:"Citrus, bright",
+    taste:"Tart, zesty",
+    substitutions:[
+        {name:"Lime zest",aroma:"Citrus",taste:"sharper tartness"}
+    ]
+
+},
+butter:{
+    aroma:"Creamy, rich",
+    taste:"Buttery, slightly sweet",
+    substitutions:[
+        {name:"Ghee or margarine",aroma:"Rich, nutty (ghee)",taste:"neutral or mildly salty (margarine)"}
+    ]
+    
+
+},
+soysauce:{
+    aroma:"Umami, salty",
+    taste:"Salty, umami-rich",
+    substitutions:[
+        {name:"Tamari or coconut aminos",aroma:"Salty, slightly sweet",taste:"umami-rich"}
+    ]
+},
+cilantro:{
+    aroma:"Fresh, citrusy, herbaceous",
+    taste:"Bright, lemony",
+    substitutions:[
+        {name:"Parsley with a touch of lime zest",aroma:"Fresh, grassy",taste:"mild citrusy"}
+    ]
+},
+ginger:{
+    aroma:"Spicy, slightly citrusy",
+    taste:"Warm, peppery, tangy",
+    substitutions:[
+        {name:"Galangal or ground allspice",aroma:"Woody",taste:"spicy, slightly floral"}
+    ]
+},
+cinnamon:{
+    aroma:"Warm, spicy, woody",
+    taste:"Sweet, slightly spicy",
+    substitutions:[
+        {name:"Sweet, slightly spicy",aroma:"Warm",taste:" nutty, slightly sweet and spicy"}
+    ]
+},
+garlic:{
+    aroma:"Pungent, savory",
+    taste:"Spicy, earthy, umami",
+    substitutions:[
+        {name:"Asafoetida (hing)",aroma:"Strong",taste:"sulfurous, savory"}
+    ]
+},salt:{
+    aroma:"Neutral",
+    taste:"salty",
+    substitutions:[
+        {name:"Soy sauce",aroma:"salty",taste:"umami"}
+    ]
+
+},
+brownsugar:{
+    aroma:"Molasses-like,rich",
+    taste:"sweet,slightly nutty",
+    substitutions:[
+        {name:"white sugar with molasses",aroma:"similar sweetness",taste:"richness"}
+    ]
+
+
+},
+bayleaf:{
+    aroma:"Herbal, slightly floral, and woody",
+    taste:"Mildly bitter, earthy",
+    substitutions:[
+        {name:"Thyme or dried basil",aroma:"Earthy",taste:"slightly floral"}
+    ]
+},
+tomatoes:{
+    aroma:"	Fresh, acidic, slightly sweet",
+    taste:"Sweet, tangy, umami",
+    substitutions:[
+        {name:"Sun-dried tomatoes or tomato paste",aroma:"Concentrated tangy",taste:"umami"}
+    ]
+},
+vanillabean:{
+    aroma:"Intense, floral, sweet",
+    taste:"Sweet, creamy",
+    substitutions:[
+       {name:"Vanilla essence or cardamom",aroma:"Synthetic sweet (essence)",taste:"citrusy, floral (cardamom)"}
+    ]
+},
+chillipepper:{
+    aroma:"Spicy, slightly smoky",
+    taste:"Hot, pungent",
+    substitutions:[
+        {name:"Red pepper flakes or paprika",aroma:"Milder spicy (flakes)",taste:"smoky, sweet (paprika)"}
+    ]
+},
+honey:{
+    aroma:"	Floral, slightly caramelized",
+    taste:"Sweet, light floral",
+    substitutions:[
+        {name:"Maple syrup or agave syrup",aroma:"Earthy, rich (maple)",taste:"neutral, mild (agave)"}
+    ]
+},
+lemonzest:{
+    aroma:"Citrus, bright",
+    taste:"Tart, zesty",
+    substitutions:[
+        {name:"Lime zest",aroma:"Citrus",taste:"sharper tartness"}
+    ]
+
+},
+butter:{
+    aroma:"Creamy, rich",
+    taste:"Buttery, slightly sweet",
+    substitutions:[
+        {name:"Ghee or margarine",aroma:"Rich, nutty (ghee)",taste:"neutral or mildly salty (margarine)"}
+    ]
+    
+
+},
+soysauce:{
+    aroma:"Umami, salty",
+    taste:"Salty, umami-rich",
+    substitutions:[
+        {name:"Tamari or coconut aminos",aroma:"Salty, slightly sweet",taste:"umami-rich"}
+    ]
+},
+cilantro:{
+    aroma:"Fresh, citrusy, herbaceous",
+    taste:"Bright, lemony",
+    substitutions:[
+        {name:"Parsley with a touch of lime zest",aroma:"Fresh, grassy",taste:"mild citrusy"}
+    ]
+},
+ginger:{
+    aroma:"Spicy, slightly citrusy",
+    taste:"Warm, peppery, tangy",
+    substitutions:[
+        {name:"Galangal or ground allspice",aroma:"Woody",taste:"spicy, slightly floral"}
+    ]
+},
+cinnamon:{
+    aroma:"Warm, spicy, woody",
+    taste:"Sweet, slightly spicy",
+    substitutions:[
+        {name:"Sweet, slightly spicy",aroma:"Warm",taste:" nutty, slightly sweet and spicy"}
+    ]
+},
+garlic:{
+    aroma:"Pungent, savory",
+    taste:"Spicy, earthy, umami",
+    substitutions:[
+        {name:"Asafoetida (hing)",aroma:"Strong",taste:"sulfurous, savory"}
+    ]
+},
+vanillaextract:{
+    aroma:"Sweet, warm, floral",
+    taste:"Sweet, slightly woody",
+    substitutions:[
+        {name:"Almond extract",aroma:"Nutty",taste:"sweet, mildly bitter"}
+    ]
+}
+};
+
+// Function to fetch substitutions
+function fetchSubstitutions() {
+  const ingredientInput = document.getElementById("ingredient-input").value.trim().toLowerCase();
+  const errorMessage = document.getElementById("error-message");
+  const substitutionList = document.getElementById("substitution-list");
+
+  // Clear previous results
+  substitutionList.innerHTML = '';
+  errorMessage.textContent = '';
+
+  if (ingredientInput === '') {
+    errorMessage.textContent = "Please enter an ingredient.";
+    return;
+  }
+
+  // Check if ingredient exists in the database
+  const ingredientData = ingredientDatabase[ingredientInput];
+
+  if (ingredientData) {
+    // Display the substitution suggestions
+    ingredientData.substitutions.forEach(substitute => {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `<strong>${substitute.name}</strong> - Aroma: ${substitute.aroma}, Taste: ${substitute.taste}`;
+      substitutionList.appendChild(listItem);
+    });
+  } else {
+    errorMessage.textContent = "Ingredient not found. Try another one.";
+  }
+}
+
+// Clear previous results when the user types
+function clearResults() {
+  const substitutionList = document.getElementById("substitution-list");
+  substitutionList.innerHTML = '';
+  document.getElementById("error-message").textContent = '';
+}
+
+  </script>
 </body>
 </html>

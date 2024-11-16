@@ -18,10 +18,11 @@ body {
 	font-family: 'Lato', sans-serif;
 	background-image: url("https://i.pinimg.com/736x/33/ef/8b/33ef8b9c0b902154a6cd4103a21275ef.jpg");
 	background-size: cover;
+	overflow: hidden;
 	
 }
-body::before{
-	filter:blur(2px);
+body::after{
+	position:absolute;
 }
 .wrapper {
 	width: 1170px;
